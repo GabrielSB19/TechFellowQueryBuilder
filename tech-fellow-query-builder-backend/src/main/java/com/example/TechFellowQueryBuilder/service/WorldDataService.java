@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for providing world data through BigQuery queries.
+ */
 @Service
 @AllArgsConstructor
 public class WorldDataService {
@@ -26,6 +29,13 @@ public class WorldDataService {
     private final RegionWorldMapper regionWorldMapper;
     private final BigQueryWorldDataService BigQueryWorldDataService;
 
+    /**
+     * Retrieves a list of countries and maps them to CountryDTO objects.
+     *
+     * @return List of CountryDTO objects representing countries.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<CountryDTO> getCountries() throws InterruptedException, IOException {
         List<Country> countries = BigQueryWorldDataService.getCountries();
         return countries.stream()
@@ -33,6 +43,13 @@ public class WorldDataService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a list of group countries and maps them to GroupCountryDTO objects.
+     *
+     * @return List of GroupCountryDTO objects representing group countries.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<GroupCountryDTO> getGroupCountries() throws InterruptedException, IOException {
         List<GroupCountry> groupCountries = BigQueryWorldDataService.getGroupCountries();
         return groupCountries.stream()
@@ -40,6 +57,13 @@ public class WorldDataService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a list of world regions and maps them to RegionWorldDTO objects.
+     *
+     * @return List of RegionWorldDTO objects representing world regions.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<RegionWorldDTO> getRegionsWorld() throws InterruptedException, IOException {
         List<RegionWorld> regionsWorld = BigQueryWorldDataService.getRegionsWorld();
         return regionsWorld.stream().map(regionWorldMapper::toDTO).collect(Collectors.toList());

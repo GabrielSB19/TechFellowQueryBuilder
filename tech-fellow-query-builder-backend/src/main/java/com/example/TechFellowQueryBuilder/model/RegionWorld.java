@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Represents a region world entity with name.
+ */
 @Data
 @Entity
 @Builder

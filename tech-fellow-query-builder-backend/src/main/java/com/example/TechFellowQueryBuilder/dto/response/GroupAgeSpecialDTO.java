@@ -6,14 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represents a region world DTO with name.
+ * Represents a Group Age Special DTO with code and name.
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegionWorldDTO {
-
-    private String regionName;
-
+public class GroupAgeSpecialDTO {
+    private String groupAgeSpecialCode;
+    private String groupAgeSpecialName;
 }

@@ -15,6 +15,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+
+/**
+ * Service class for interacting with Google BigQuery to retrieve world data.
+ */
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -30,9 +34,19 @@ public class BigQueryWorldDataService {
         }
     }
 
+    /**
+     * Initializes the BigQueryWorldDataService with the provided GoogleCredentials.
+     */
     public BigQueryWorldDataService() throws IOException {
     }
 
+    /**
+     * Configures and executes a BigQuery job based on the provided QueryJobConfiguration.
+     *
+     * @param queryConfig QueryJobConfiguration to configure the BigQuery job.
+     * @return The executed BigQuery job.
+     * @throws IOException If an I/O error occurs while interacting with Google BigQuery.
+     */
     private Job config(QueryJobConfiguration queryConfig) throws IOException {
         BigQuery bigquery = BigQueryOptions.newBuilder()
                 .setCredentials(credentials)
@@ -57,6 +71,13 @@ public class BigQueryWorldDataService {
         return queryJob;
     }
 
+    /**
+     * Retrieves a list of countries with their country codes and names from BigQuery.
+     *
+     * @return List of Country objects representing countries.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<Country> getCountries() throws InterruptedException, IOException {
 
         QueryJobConfiguration queryConfig =
@@ -77,6 +98,13 @@ public class BigQueryWorldDataService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a list of group countries with their country codes and names from BigQuery.
+     *
+     * @return List of GroupCountry objects representing group countries.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<GroupCountry> getGroupCountries() throws InterruptedException, IOException {
 
         QueryJobConfiguration queryConfig =
@@ -96,6 +124,13 @@ public class BigQueryWorldDataService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a list of world regions from BigQuery.
+     *
+     * @return List of RegionWorld objects representing world regions.
+     * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
+     * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
+     */
     public List<RegionWorld> getRegionsWorld() throws InterruptedException, IOException{
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(

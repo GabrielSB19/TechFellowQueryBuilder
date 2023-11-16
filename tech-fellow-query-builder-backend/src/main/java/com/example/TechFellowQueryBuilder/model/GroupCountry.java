@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Represents a group of countries entity with code and name.
+ */
 @Data
 @Entity
 @Builder

@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a Country DTO with country code and name.
+ */
 @Data
 @Builder
 @NoArgsConstructor

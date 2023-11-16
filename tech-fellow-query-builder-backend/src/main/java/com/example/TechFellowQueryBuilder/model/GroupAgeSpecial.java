@@ -7,19 +7,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 /**
- * Represents a Country entity with country code and name.
+ * Represents a Group Age Special entity with code and name.
  */
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
+public class GroupAgeSpecial {
 
     @Id
-    private String countryCode;
-    private String countryName;
-
+    private String groupAgeSpecialCode;
+    private String groupAgeSpecialName;
 }

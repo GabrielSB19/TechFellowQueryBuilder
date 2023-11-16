@@ -5,15 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InternationalEducation {
-    private String countryName;
+public class Country {
+
+    @Id
     private String countryCode;
-    private String indicatorName;
-    private String indicatorCode;
-    private Float value;
-    private Integer year;
+    private String countryName;
+
 }

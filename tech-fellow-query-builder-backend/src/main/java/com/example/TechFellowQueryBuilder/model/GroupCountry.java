@@ -5,12 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CountrySeriesDefinitions {
-    private String countryCode;
-    private String seriesCode;
-    private String description;
+public class GroupCountry {
+
+    @Id
+    private String groupCountryCode;
+    private String groupCountryName;
+
 }

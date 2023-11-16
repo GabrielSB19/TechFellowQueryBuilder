@@ -2,6 +2,7 @@ package com.example.TechFellowQueryBuilder.service.BigQuery;
 
 import com.example.TechFellowQueryBuilder.model.Country;
 import com.example.TechFellowQueryBuilder.model.GroupCountry;
+import com.example.TechFellowQueryBuilder.model.RegionWorld;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.bigquery.*;
 import lombok.AllArgsConstructor;
@@ -56,11 +57,7 @@ public class BigQueryWorldDataService {
         return queryJob;
     }
 
-    public List<Country> getCountries() throws InterruptedException {
-
-        BigQuery bigquery = BigQueryOptions.newBuilder()
-                .setCredentials(credentials)
-                .build().getService();
+    public List<Country> getCountries() throws InterruptedException, IOException {
 
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(
@@ -68,21 +65,7 @@ public class BigQueryWorldDataService {
                         .setUseLegacySql(false)
                         .build();
 
-        String jobIdStr = UUID.randomUUID().toString();
-        JobId jobId = JobId.of(jobIdStr);
-        Job queryJob = bigquery.create(JobInfo.newBuilder(queryConfig).setJobId(jobId).build());
-
-        try {
-            queryJob = queryJob.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        if (queryJob == null) {
-            throw new RuntimeException("Connect Failed");
-        } else if (queryJob.getStatus().getError() != null) {
-            throw new RuntimeException(queryJob.getStatus().getError().toString());
-        }
+        Job queryJob = config(queryConfig);
 
         TableResult result = queryJob.getQueryResults();
 
@@ -94,11 +77,7 @@ public class BigQueryWorldDataService {
                 .collect(Collectors.toList());
     }
 
-    public List<GroupCountry> getGroupCountries() throws InterruptedException {
-
-        BigQuery bigquery = BigQueryOptions.newBuilder()
-                .setCredentials(credentials)
-                .build().getService();
+    public List<GroupCountry> getGroupCountries() throws InterruptedException, IOException {
 
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(
@@ -106,28 +85,30 @@ public class BigQueryWorldDataService {
                         .setUseLegacySql(false)
                         .build();
 
-        String jobIdStr = UUID.randomUUID().toString();
-        JobId jobId = JobId.of(jobIdStr);
-        Job queryJob = bigquery.create(JobInfo.newBuilder(queryConfig).setJobId(jobId).build());
-
-        try {
-            queryJob = queryJob.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        if (queryJob == null) {
-            throw new RuntimeException("Connect Failed");
-        } else if (queryJob.getStatus().getError() != null) {
-            throw new RuntimeException(queryJob.getStatus().getError().toString());
-        }
-
+        Job queryJob = config(queryConfig);
         TableResult result = queryJob.getQueryResults();
 
         return StreamSupport.stream(result.iterateAll().spliterator(), false)
                 .map(row -> GroupCountry.builder()
                         .groupCountryCode(row.get("country_code").getStringValue())
                         .groupCountryName(row.get("table_name").getStringValue())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    public List<RegionWorld> getRegionsWorld() throws InterruptedException, IOException{
+        QueryJobConfiguration queryConfig =
+                QueryJobConfiguration.newBuilder(
+                                "SELECT region FROM `bigquery-public-data.world_bank_intl_education.country_summary` where region is not null GROUP BY region")
+                        .setUseLegacySql(false)
+                        .build();
+
+        Job queryJob = config(queryConfig);
+        TableResult result = queryJob.getQueryResults();
+
+        return StreamSupport.stream(result.iterateAll().spliterator(), false)
+                .map(row -> RegionWorld.builder()
+                        .regionName(row.get("region").getStringValue())
                         .build())
                 .collect(Collectors.toList());
     }

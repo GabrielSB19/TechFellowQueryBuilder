@@ -1,26 +1,16 @@
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { Button } from "@nextui-org/button";
+import FormUser from "@/components/FormUser";
 
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">
-        <br />
-        <div>Hola</div>
+        <div className="text-5xl mb-3">
+          Welcome to{" "}
+          <span className="font-bold text-blue-500">DemograficAtlas</span>
+        </div>
+        <div className="font-bold">Mapping the World, Understanding People</div>
       </div>
-
-      <div className="flex gap-3">
-        <Button color="primary">Button</Button>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideSymbol hideCopyButton variant="flat">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
+      <FormUser />
     </section>
   );
 }

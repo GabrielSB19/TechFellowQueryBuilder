@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
+import NavbarComponent from "@/components/navbar/NavbarComponent";
 
 export const metadata: Metadata = {
   title: {

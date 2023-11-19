@@ -1,8 +1,9 @@
 package com.example.TechFellowQueryBuilder.api;
 
-import com.example.TechFellowQueryBuilder.dto.response.CountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.GroupCountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.RegionWorldDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.CountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupCountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.RegionWorldDTO;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,7 +28,9 @@ public interface QueryWorldAPI {
      * @throws InterruptedException If the thread is interrupted while waiting for the BigQuery job to complete.
      * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
      */
+
     @GetMapping("/countries")
+    @CrossOrigin("*")
     List<CountryDTO> getCountries() throws InterruptedException, IOException;
 
     /**
@@ -38,6 +41,7 @@ public interface QueryWorldAPI {
      * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
      */
     @GetMapping("/groupCountries")
+    @CrossOrigin("*")
     List<GroupCountryDTO> getGroupCountries() throws InterruptedException, IOException;
 
     /**
@@ -48,5 +52,6 @@ public interface QueryWorldAPI {
      * @throws IOException          If an I/O error occurs while interacting with Google BigQuery.
      */
     @GetMapping("/regionsWorld")
+    @CrossOrigin("*")
     List<RegionWorldDTO> getRegionsWorld() throws InterruptedException, IOException;
 }

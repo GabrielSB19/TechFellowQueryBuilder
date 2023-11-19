@@ -1,6 +1,6 @@
 package com.example.TechFellowQueryBuilder.service.BigQuery;
 
-import com.example.TechFellowQueryBuilder.model.GroupAgeSpecial;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupAgeSpecial;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.bigquery.*;
 import lombok.AllArgsConstructor;

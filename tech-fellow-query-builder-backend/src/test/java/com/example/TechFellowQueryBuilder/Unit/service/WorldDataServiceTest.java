@@ -1,14 +1,14 @@
 package com.example.TechFellowQueryBuilder.Unit.service;
 
-import com.example.TechFellowQueryBuilder.dto.response.CountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.GroupCountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.RegionWorldDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.CountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupCountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.RegionWorldDTO;
 import com.example.TechFellowQueryBuilder.mapper.CountryMapper;
 import com.example.TechFellowQueryBuilder.mapper.GroupCountryMapper;
 import com.example.TechFellowQueryBuilder.mapper.RegionWorldMapper;
-import com.example.TechFellowQueryBuilder.model.Country;
-import com.example.TechFellowQueryBuilder.model.GroupCountry;
-import com.example.TechFellowQueryBuilder.model.RegionWorld;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.Country;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupCountry;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.RegionWorld;
 import com.example.TechFellowQueryBuilder.service.BigQuery.BigQueryWorldDataService;
 import com.example.TechFellowQueryBuilder.service.WorldDataService;
 import org.junit.jupiter.api.BeforeEach;

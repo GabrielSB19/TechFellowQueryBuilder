@@ -1,6 +1,6 @@
 package com.example.TechFellowQueryBuilder.service;
 
-import com.example.TechFellowQueryBuilder.dto.response.GroupAgeSpecialDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupAgeSpecialDTO;
 import com.example.TechFellowQueryBuilder.mapper.GroupAgeSpecialMapper;
 import com.example.TechFellowQueryBuilder.service.BigQuery.BigQueryAgeDataService;
 import lombok.AllArgsConstructor;

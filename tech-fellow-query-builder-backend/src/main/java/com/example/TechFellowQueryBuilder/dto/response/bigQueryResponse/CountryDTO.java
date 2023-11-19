@@ -1,24 +1,19 @@
-package com.example.TechFellowQueryBuilder.model;
+package com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
- * Represents a Country entity with country code and name.
+ * Represents a Country DTO with country code and name.
  */
 @Data
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
+public class CountryDTO {
 
-    @Id
     private String countryCode;
     private String countryName;
 

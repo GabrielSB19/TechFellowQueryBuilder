@@ -1,7 +1,7 @@
 package com.example.TechFellowQueryBuilder.controller;
 
 import com.example.TechFellowQueryBuilder.api.QueryAgeAPI;
-import com.example.TechFellowQueryBuilder.dto.response.GroupAgeSpecialDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupAgeSpecialDTO;
 import com.example.TechFellowQueryBuilder.service.AgeDataService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

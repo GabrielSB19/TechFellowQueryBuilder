@@ -1,9 +1,9 @@
 package com.example.TechFellowQueryBuilder.controller;
 
 import com.example.TechFellowQueryBuilder.api.QueryWorldAPI;
-import com.example.TechFellowQueryBuilder.dto.response.CountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.GroupCountryDTO;
-import com.example.TechFellowQueryBuilder.dto.response.RegionWorldDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.CountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupCountryDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.RegionWorldDTO;
 import com.example.TechFellowQueryBuilder.service.WorldDataService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

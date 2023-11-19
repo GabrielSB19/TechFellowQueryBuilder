@@ -1,7 +1,7 @@
 package com.example.TechFellowQueryBuilder.mapper;
 
-import com.example.TechFellowQueryBuilder.dto.response.GroupAgeSpecialDTO;
-import com.example.TechFellowQueryBuilder.model.GroupAgeSpecial;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupAgeSpecialDTO;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupAgeSpecial;
 import org.mapstruct.Mapper;
 
 /**

@@ -1,8 +1,8 @@
 package com.example.TechFellowQueryBuilder.Unit.service;
 
-import com.example.TechFellowQueryBuilder.dto.response.GroupAgeSpecialDTO;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupAgeSpecialDTO;
 import com.example.TechFellowQueryBuilder.mapper.GroupAgeSpecialMapper;
-import com.example.TechFellowQueryBuilder.model.GroupAgeSpecial;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupAgeSpecial;
 import com.example.TechFellowQueryBuilder.service.AgeDataService;
 import com.example.TechFellowQueryBuilder.service.BigQuery.BigQueryAgeDataService;
 import org.junit.jupiter.api.BeforeEach;

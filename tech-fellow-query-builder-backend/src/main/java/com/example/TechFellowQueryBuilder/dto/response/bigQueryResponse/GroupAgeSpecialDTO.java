@@ -1,4 +1,4 @@
-package com.example.TechFellowQueryBuilder.dto.response;
+package com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

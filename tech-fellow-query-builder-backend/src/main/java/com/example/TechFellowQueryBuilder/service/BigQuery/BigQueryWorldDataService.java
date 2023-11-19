@@ -1,8 +1,8 @@
 package com.example.TechFellowQueryBuilder.service.BigQuery;
 
-import com.example.TechFellowQueryBuilder.model.Country;
-import com.example.TechFellowQueryBuilder.model.GroupCountry;
-import com.example.TechFellowQueryBuilder.model.RegionWorld;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.Country;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupCountry;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.RegionWorld;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.bigquery.*;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.TechFellowQueryBuilder.mapper;
 
-import com.example.TechFellowQueryBuilder.dto.response.GroupCountryDTO;
-import com.example.TechFellowQueryBuilder.model.GroupCountry;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GroupCountryDTO;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.GroupCountry;
 import org.mapstruct.Mapper;
 
 /**

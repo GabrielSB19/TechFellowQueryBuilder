@@ -1,7 +1,7 @@
 package com.example.TechFellowQueryBuilder.mapper;
 
-import com.example.TechFellowQueryBuilder.dto.response.RegionWorldDTO;
-import com.example.TechFellowQueryBuilder.model.RegionWorld;
+import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.RegionWorldDTO;
+import com.example.TechFellowQueryBuilder.model.bigQueryModel.RegionWorld;
 import org.mapstruct.Mapper;
 
 /**

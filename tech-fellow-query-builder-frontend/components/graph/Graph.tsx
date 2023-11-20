@@ -33,10 +33,18 @@ const Graph = ({ queryData }: GraphProps) => {
             x: {
               type: "linear",
               position: "bottom",
+              title: {
+                display: true,
+                text: "Year",
+              },
             },
             y: {
               type: "linear",
               position: "left",
+              title: {
+                display: true,
+                text: "Persons amount",
+              },
             },
           },
         },
@@ -45,8 +53,8 @@ const Graph = ({ queryData }: GraphProps) => {
   }, [data]);
 
   return (
-    <div>
-      <canvas ref={chartRef} width="400" height="200" />;
+    <div className="mt-5 mb-10">
+      <canvas ref={chartRef} width="400" height="200" />
     </div>
   );
 };

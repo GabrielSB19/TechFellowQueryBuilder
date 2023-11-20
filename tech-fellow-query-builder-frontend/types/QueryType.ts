@@ -7,6 +7,7 @@ type QueryType = {
   userClient: string;
   query: string;
   comments: CommenType[];
+  worldType: string;
 };
 
 export default QueryType;

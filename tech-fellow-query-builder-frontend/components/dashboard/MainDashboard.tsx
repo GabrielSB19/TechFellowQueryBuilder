@@ -14,7 +14,8 @@ import getDataService from "@/service/getDataService";
 import { toast } from "react-hot-toast";
 import DataGraphType from "@/types/DataGraphType";
 import Graph from "../graph/Graph";
-import { CircularProgress } from "@nextui-org/react";
+import { CircularProgress, Modal } from "@nextui-org/react";
+import ModalSaveQuery from "../saveQuery/ModalSaveQuery";
 
 interface MainDashboardProps {
   countries: CountryType[];
@@ -118,7 +119,14 @@ const MainDashboard = ({
             <CircularProgress label="Loading" size="lg" />
           </div>
         ) : (
-          dataGraph && <Graph queryData={dataGraph} />
+          dataGraph && (
+            <div>
+              <Graph queryData={dataGraph} />
+              <div className="flex flex-row justify-center mb-10 w-[100%]">
+                <ModalSaveQuery queryData={dataGraph} />
+              </div>
+            </div>
+          )
         )}
       </div>
     </>

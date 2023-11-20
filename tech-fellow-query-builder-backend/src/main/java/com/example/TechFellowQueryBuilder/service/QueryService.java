@@ -9,6 +9,9 @@ import com.example.TechFellowQueryBuilder.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 
 @Service
 @AllArgsConstructor
@@ -23,7 +26,19 @@ public class QueryService {
 
     public QueryResponseDTO createQuery(QueryRequestDTO queryRequestDTO) {
         Query query = queryMapper.toQuery(queryRequestDTO);
-        query.setUserClient(userRepository.findByUsername(queryRequestDTO.getUserClient()).orElseThrow(()-> new RuntimeException("User not found")));
+        query.setUserClient(userRepository.findByUsername(queryRequestDTO.getUserClient()).orElseThrow(() -> new RuntimeException("User not found")));
         return queryMapper.toQueryResponseDTO(queryRepository.save(query));
+    }
+
+    public List<QueryResponseDTO> getAllQueries() {
+        return queryRepository.findAll().stream().map(queryMapper::toQueryResponseDTO).toList();
+    }
+
+    public QueryResponseDTO getQueryById(UUID id){
+        return queryMapper.toQueryResponseDTO(queryRepository.findById(id).orElseThrow(() -> new RuntimeException("Query not found")));
+    }
+
+    public void buildQuery(){
+
     }
 }

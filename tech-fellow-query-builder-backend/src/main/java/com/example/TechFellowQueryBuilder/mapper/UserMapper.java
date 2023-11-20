@@ -9,12 +9,15 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+    final QueryMapper queryMapper = new QueryMapperImpl();
+    final CommentMapper commentMapper = new CommentMapperImpl();
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "queries", ignore = true)
     @Mapping(target = "comments", ignore = true)
     UserClient toUser(UserRequestDTO userRequestDTO);
 
-    @Mapping(target = "queries", ignore = true)
-    @Mapping(target = "comments", ignore = true)
+    @Mapping(target = "queries", expression = "java(userClient.getQueries().stream().map(queryMapper::toQueryResponseDTO).toList())")
+    @Mapping(target = "comments", expression = "java(userClient.getComments().stream().map(commentMapper::toCommentResponseDTO).toList())")
     UserResponseDTO toResponseDTO(UserClient userClient);
 }

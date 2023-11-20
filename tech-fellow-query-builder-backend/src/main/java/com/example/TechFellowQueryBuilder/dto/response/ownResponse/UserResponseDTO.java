@@ -18,9 +18,6 @@ public class UserResponseDTO {
     private String username;
 
     private List<QueryResponseDTO> queries;
-
-
-
     private List<CommentResponseDTO> comments;
 
 

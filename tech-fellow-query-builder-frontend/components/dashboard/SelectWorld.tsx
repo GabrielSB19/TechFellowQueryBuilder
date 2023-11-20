@@ -8,12 +8,14 @@ interface SelectWorldProps {
   countries: CountryType[];
   groupCountries: GroupCountryType[];
   regionWorld: RegionWorldType[];
+  handleProperty: (property: string, value: string) => void;
 }
 
 const SelectWorld = ({
   countries,
   groupCountries,
   regionWorld,
+  handleProperty,
 }: SelectWorldProps) => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState<string>("");
   return (
@@ -50,6 +52,11 @@ const SelectWorld = ({
               className="max-w-xs"
               defaultItems={countries}
               size="lg"
+              onSelectionChange={(selectedItem) =>
+                selectedItem
+                  ? handleProperty("codeCountry", selectedItem.toString())
+                  : handleProperty("codeCountry", "")
+              }
             >
               {(item) => (
                 <AutocompleteItem key={item.countryCode}>
@@ -67,6 +74,11 @@ const SelectWorld = ({
               className="max-w-xs"
               defaultItems={groupCountries}
               size="lg"
+              onSelectionChange={(selectedItem) =>
+                selectedItem
+                  ? handleProperty("codeCountry", selectedItem.toString())
+                  : handleProperty("codeCountry", "")
+              }
             >
               {(item) => (
                 <AutocompleteItem key={item.groupCountryCode}>
@@ -84,6 +96,11 @@ const SelectWorld = ({
               className="max-w-xs"
               defaultItems={regionWorld}
               size="lg"
+              onSelectionChange={(selectedItem) =>
+                selectedItem
+                  ? handleProperty("codeRegion", selectedItem.toString())
+                  : handleProperty("codeRegion", "")
+              }
             >
               {(item) => (
                 <AutocompleteItem key={item.regionName}>

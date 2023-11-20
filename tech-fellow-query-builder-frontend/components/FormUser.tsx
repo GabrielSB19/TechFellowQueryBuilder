@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import userService from "@/service/userService";
+import { toast } from "react-hot-toast";
 
 const FormUser = () => {
   const [username, setUsername] = useState<string>("");
@@ -22,7 +23,7 @@ const FormUser = () => {
       await userService.fetchCreateData(username);
       localStorage.setItem("username", username);
     } catch (error) {
-      console.log(error);
+      toast.error("Error creating user");
     }
   };
 

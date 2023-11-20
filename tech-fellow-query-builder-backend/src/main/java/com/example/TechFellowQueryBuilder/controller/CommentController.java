@@ -7,6 +7,8 @@ import com.example.TechFellowQueryBuilder.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class CommentController implements CommentAPI {
@@ -16,4 +18,10 @@ public class CommentController implements CommentAPI {
     public CommentResponseDTO crateComment(CommentRequestDTO commentRequestDTO) {
         return commentService.createComment(commentRequestDTO);
     }
+
+    @Override
+    public List<CommentResponseDTO> getCommentByQueryId(String id) {
+        return commentService.getAllCommentsByQuery(id);
+    }
+
 }

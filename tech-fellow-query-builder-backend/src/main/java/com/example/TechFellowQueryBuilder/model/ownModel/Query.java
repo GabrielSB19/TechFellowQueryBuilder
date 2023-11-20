@@ -29,4 +29,12 @@ public class Query {
     private List<Comment> comments;
 
     private String query;
+
+    @Override
+    public String toString() {
+        return "Query{" +
+                "id=" + id +
+                ", queryName='" + queryName + '\'' +
+                '}';
+    }
 }

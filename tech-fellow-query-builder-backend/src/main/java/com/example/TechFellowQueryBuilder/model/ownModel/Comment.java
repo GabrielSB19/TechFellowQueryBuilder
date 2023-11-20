@@ -24,4 +24,6 @@ public class Comment {
 
     @ManyToOne
     private Query query;
+
+
 }

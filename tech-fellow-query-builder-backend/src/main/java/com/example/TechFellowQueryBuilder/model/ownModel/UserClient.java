@@ -27,4 +27,11 @@ public class UserClient {
     @OneToMany(mappedBy = "userClient")
     private List<Comment> comments;
 
+    @Override
+    public String toString() {
+        return "UserClient{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

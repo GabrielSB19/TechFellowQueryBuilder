@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
+import userService from "@/service/userService";
 
 const FormUser = () => {
   const [username, setUsername] = useState<string>("");
@@ -14,6 +15,15 @@ const FormUser = () => {
 
   const handleClear = () => {
     setUsername("");
+  };
+
+  const handleCreateUser = async (username: string) => {
+    try {
+      await userService.fetchCreateData(username);
+      localStorage.setItem("username", username);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -34,6 +44,9 @@ const FormUser = () => {
             <Button
               color="primary"
               className="animate-appearance-in mt-2 w-full"
+              onClick={() => {
+                handleCreateUser(username);
+              }}
             >
               Log In
             </Button>

@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+
+  fronted:
+    build:
+      context: ./tech-fellow-query-builder-frontend
+      dockerfile: Dockerfile
+    container_name: tffrontend
+    ports:
+      - "9000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./tech-fellow-query-builder-backend
+      dockerfile: Dockerfile
+    container_name: tffbackend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+    environment:
+      - server.port=8000
+      - spring.datasource.url=jdbc:postgresql://db:5432/ver_db
+      - spring.datasource.username=techgabriel
+      - spring.datasource.password=techgabrielpwd
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      - spring.datasource.driver-class-name=org.postgresql.Driver
+      - spring.jpa.hibernate.ddl-auto=update
+      - logging.level.org.springframework.security=DEBUG
+      - logging.level.org.hibernate.SQL=DEBUG
+      - spring.credential.google=app/credentials.json
+
+  db:
+    image: 'postgres:13.1-alpine'
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_USER: techgabriel
+      POSTGRES_PASSWORD: techgabrielpwd
+      POSTGRES_DB: ver_db
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+volumes:
+  postgres_data:
+
+
+networks:
+  mynetwork:

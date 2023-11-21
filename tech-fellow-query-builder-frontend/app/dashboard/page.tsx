@@ -14,21 +14,16 @@ import NavbarComponent from "@/components/navbar/NavbarComponent";
 
 const DashboardPage = () => {
   const [countries, setCountries] = useState<CountryType[]>([]);
-  const [groupedCountries, setGroupedCountries] = useState<GroupCountryType[]>(
-    []
-  );
   const [regions, setRegions] = useState<RegionWorldType[]>([]);
 
   const fetchData = async () => {
     try {
-      const [dataCountry, dataGroupedCountry, dataRegion] = await Promise.all([
+      const [dataCountry, dataRegion] = await Promise.all([
         bigQueryServie.fetchDataCountry(),
-        bigQueryServie.fetchDataGroupCountry(),
         bigQueryServie.fetchDataRegionWorld(),
       ]);
 
       if (dataCountry) setCountries(dataCountry);
-      if (dataGroupedCountry) setGroupedCountries(dataGroupedCountry);
       if (dataRegion) setRegions(dataRegion);
     } catch (error) {
       toast.error("Error al cargar datos");
@@ -39,7 +34,7 @@ const DashboardPage = () => {
     fetchData();
   }, []);
 
-  if (!countries.length || !groupedCountries.length || !regions.length)
+  if (!countries.length || !regions.length)
     return (
       <>
         <NavbarComponent selected="Home" />
@@ -52,11 +47,7 @@ const DashboardPage = () => {
   return (
     <>
       <NavbarComponent selected="Home" />
-      <MainDashboard
-        countries={countries}
-        groupCountries={groupedCountries}
-        regionWorld={regions}
-      />
+      <MainDashboard countries={countries} regionWorld={regions} />
     </>
   );
 };

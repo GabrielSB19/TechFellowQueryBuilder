@@ -19,7 +19,6 @@ import ModalSaveQuery from "../saveQuery/ModalSaveQuery";
 
 interface MainDashboardProps {
   countries: CountryType[];
-  groupCountries: GroupCountryType[];
   regionWorld: RegionWorldType[];
 }
 
@@ -33,11 +32,7 @@ const queryDataForm: GetDataType = {
   yearMax: "",
 };
 
-const MainDashboard = ({
-  countries,
-  groupCountries,
-  regionWorld,
-}: MainDashboardProps) => {
+const MainDashboard = ({ countries, regionWorld }: MainDashboardProps) => {
   const [isEnable, setIsEnable] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<GetDataType>(queryDataForm);
   const [isQueryLoad, setIsQuery] = useState<boolean>(false);
@@ -94,7 +89,6 @@ const MainDashboard = ({
         <div className="flex flex-row justify-between">
           <SelectWorld
             countries={countries}
-            groupCountries={groupCountries}
             regionWorld={regionWorld}
             handleProperty={handleProperty}
           />

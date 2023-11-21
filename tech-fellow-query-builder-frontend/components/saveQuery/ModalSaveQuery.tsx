@@ -29,6 +29,8 @@ const queryFormSave: QueryFormType = {
 };
 
 const ModalSaveQuery = ({ queryData }: ModalSaveQueryProps) => {
+  console.log(queryData);
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [queryForm, setQueryForm] = useState<QueryFormType>(queryFormSave);
 

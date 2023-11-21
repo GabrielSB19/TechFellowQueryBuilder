@@ -1,8 +1,8 @@
-type CommenType = {
+type CommentType = {
   id: string;
   comment: string;
   userClient: string;
   query: string;
 };
 
-export default CommenType;
+export default CommentType;

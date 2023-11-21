@@ -6,14 +6,12 @@ import RegionWorldType from "@/types/RegionWorldType";
 
 interface SelectWorldProps {
   countries: CountryType[];
-  groupCountries: GroupCountryType[];
   regionWorld: RegionWorldType[];
   handleProperty: (property: string, value: string) => void;
 }
 
 const SelectWorld = ({
   countries,
-  groupCountries,
   regionWorld,
   handleProperty,
 }: SelectWorldProps) => {
@@ -30,12 +28,6 @@ const SelectWorld = ({
             onClick={() => setSelectedTypeFilter("country")}
           >
             Filter by Country
-          </Button>
-          <Button
-            color="primary"
-            onClick={() => setSelectedTypeFilter("groupCountry")}
-          >
-            Filter by Group of Countries
           </Button>
           <Button
             color="primary"
@@ -61,28 +53,6 @@ const SelectWorld = ({
               {(item) => (
                 <AutocompleteItem key={item.countryCode}>
                   {item.countryName}
-                </AutocompleteItem>
-              )}
-            </Autocomplete>
-          </div>
-        )}
-        {selectedTypeFilter === "groupCountry" && (
-          <div className="flex w-full flex-row justify-center md:flex-nowrap gap-4 mt-5">
-            <Autocomplete
-              label="Select a group of country"
-              placeholder="Search an country"
-              className="max-w-xs"
-              defaultItems={groupCountries}
-              size="lg"
-              onSelectionChange={(selectedItem) =>
-                selectedItem
-                  ? handleProperty("codeCountry", selectedItem.toString())
-                  : handleProperty("codeCountry", "")
-              }
-            >
-              {(item) => (
-                <AutocompleteItem key={item.groupCountryCode}>
-                  {item.groupCountryName}
                 </AutocompleteItem>
               )}
             </Autocomplete>

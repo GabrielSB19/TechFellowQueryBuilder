@@ -20,8 +20,8 @@ const FormUser = () => {
 
   const handleCreateUser = async (username: string) => {
     try {
-      await userService.fetchCreateData(username);
       localStorage.setItem("username", username);
+      await userService.fetchCreateData(username);
     } catch (error) {
       toast.error("Error creating user");
     }

@@ -3,9 +3,7 @@ version: '3.9'
 services:
 
   fronted:
-    build:
-      context: ./tech-fellow-query-builder-frontend
-      dockerfile: Dockerfile
+    image: 'gabrielsb19/frontendtech:v-1.0'
     container_name: tffrontend
     ports:
       - "9000:3000"
@@ -13,9 +11,7 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./tech-fellow-query-builder-backend
-      dockerfile: Dockerfile
+    image: 'gabrielsb19/backendtech:v-1.0'
     container_name: tffbackend
     ports:
       - "8000:8000"

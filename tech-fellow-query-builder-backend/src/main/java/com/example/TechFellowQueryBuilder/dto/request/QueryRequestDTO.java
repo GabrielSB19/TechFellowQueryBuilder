@@ -42,4 +42,35 @@ public class QueryRequestDTO {
     @NotBlank
     private String worldType;
 
+    @NotNull
+    private String codeCountry;
+
+    @NotNull
+    private String codeRegion;
+
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String gender;
+
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String ageMin;
+
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String ageMax;
+
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String yearMin;
+
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String yearMax;
+
 }

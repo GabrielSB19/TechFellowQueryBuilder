@@ -38,8 +38,6 @@ const queryFormSave: QueryFormType = {
 };
 
 const ModalSaveQuery = ({ dataGraph, queryData }: ModalSaveQueryProps) => {
-  console.log(queryData);
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [queryForm, setQueryForm] = useState<QueryFormType>(queryFormSave);
 
@@ -61,7 +59,6 @@ const ModalSaveQuery = ({ dataGraph, queryData }: ModalSaveQueryProps) => {
       let updatedQueryForm = { ...prevQueryForm, [property]: value };
       return updatedQueryForm;
     });
-    console.log(queryForm);
   };
 
   const handleSaveQuery = async () => {

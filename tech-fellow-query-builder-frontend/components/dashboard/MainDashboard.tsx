@@ -66,9 +66,6 @@ const MainDashboard = ({
         updatedQueryData = { ...updatedQueryData, ["codeCountry"]: "" };
       }
 
-      console.log(property, value);
-      console.log(updatedQueryData);
-
       return updatedQueryData;
     });
   };

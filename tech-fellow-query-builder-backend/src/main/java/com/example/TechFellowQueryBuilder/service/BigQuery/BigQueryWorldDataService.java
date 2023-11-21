@@ -32,7 +32,6 @@ public class BigQueryWorldDataService {
     @Autowired
     public BigQueryWorldDataService(Environment env, @Value("${spring.credential.google}") String path) {
         try {
-            System.out.println(env.getProperty("spring.credential.google"));
             this.credentials = GoogleCredentials.fromStream(new FileInputStream(path));
         } catch (IOException e) {
             throw new RuntimeException(e);

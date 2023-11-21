@@ -27,7 +27,6 @@ public class UserService {
      */
     public UserResponseDTO getUser(UserRequestDTO userRequestDTO) {
         UserClient userClient = userMapper.toUser(userRequestDTO);
-
     Optional<UserClient> userClientOptional = userRepository.findByUsername(userClient.getUsername());
 
         if (userClientOptional.isPresent()) {

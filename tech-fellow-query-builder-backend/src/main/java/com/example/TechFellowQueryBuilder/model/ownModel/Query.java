@@ -38,6 +38,20 @@ public class Query {
 
     private String worldType;
 
+    String codeCountry;
+
+    String codeRegion;
+
+    String gender;
+
+    String ageMin;
+
+    String ageMax;
+
+    String yearMin;
+
+    String yearMax;
+
     @Override
     public String toString() {
         return "Query{" +

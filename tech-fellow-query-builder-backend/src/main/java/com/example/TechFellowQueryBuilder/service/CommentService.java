@@ -44,7 +44,6 @@ public class CommentService {
         Query query = queryRepository.findById(UUID.fromString(commentRequestDTO.getQueryId())).orElseThrow(() -> new RuntimeException("Query not found"));
         comment.setQuery(query);
         commentRepository.save(comment);
-        System.out.println(comment);
         return commentMapper.toCommentResponseDTO(comment);
     }
 
@@ -56,7 +55,6 @@ public class CommentService {
      */
     public List<CommentResponseDTO> getAllCommentsByQuery(String queryId) {
         List<Comment> commentsByQuery = commentRepository.findAllByQuery_Id(UUID.fromString(queryId));
-        System.out.println(commentsByQuery);
 
         List<CommentResponseDTO> commentResponseDTOS = new ArrayList<>();
         commentsByQuery.stream().map(commentMapper::toCommentResponseDTO).forEach(commentResponseDTOS::add);

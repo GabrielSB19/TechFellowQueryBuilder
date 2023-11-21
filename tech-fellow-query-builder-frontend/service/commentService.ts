@@ -7,7 +7,6 @@ const fetchCreateComment = async (commentData: CommentFormType) => {
   try {
     const response = await comment.createComment(commentData);
     const commentGet: CommentType = response.data;
-    console.log(commentGet);
     return commentGet;
   } catch (error) {
     toast.error("Error al enviar el comentario");

@@ -23,4 +23,11 @@ public class QueryResponseDTO {
     private String query;
     private List<CommentResponseDTO> comments;
     private String worldType;
+    private String codeCountry;
+    private String codeRegion;
+    private String gender;
+    private String ageMin;
+    private String ageMax;
+    private String yearMin;
+    private String yearMax;
 }

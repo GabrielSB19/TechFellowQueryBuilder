@@ -9,7 +9,6 @@ interface GraphProps {
 }
 
 const Graph = ({ dataGraph, queryData }: GraphProps) => {
-  console.log(dataGraph);
   const data = dataGraph;
   let labelY = "Persons amount";
   if (queryData.ageMax === queryData.ageMin) {

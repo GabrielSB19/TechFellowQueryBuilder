@@ -5,6 +5,7 @@ import QueriesTable from "@/components/queries/QueriesTable";
 import React, { useEffect, useState } from "react";
 import queryService from "@/service/queryService";
 import QueryType from "@/types/QueryType";
+import { toast } from "react-hot-toast";
 
 const MyQueriesPage = () => {
   const [queries, setQueries] = useState<QueryType[]>([]);
@@ -15,7 +16,7 @@ const MyQueriesPage = () => {
       const response = await queryService.fetchDataQueries(username);
       setQueries(response);
     } catch (error) {
-      console.log(error);
+      toast.error("Error Fetching Queries");
     }
   };
 

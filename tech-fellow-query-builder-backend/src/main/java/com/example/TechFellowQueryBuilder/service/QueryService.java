@@ -36,7 +36,6 @@ public class QueryService {
      * @return The response DTO containing information about the created query.
      */
     public QueryResponseDTO createQuery(QueryRequestDTO queryRequestDTO) {
-        System.out.println(queryRequestDTO);
         Query query = queryMapper.toQuery(queryRequestDTO);
         query.setUserClient(userRepository.findByUsername(queryRequestDTO.getUserClient()).orElseThrow(() -> new RuntimeException("User not found")));
         query.setComments(Collections.emptyList());

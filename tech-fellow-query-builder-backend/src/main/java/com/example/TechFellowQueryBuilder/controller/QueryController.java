@@ -27,7 +27,6 @@ public class QueryController implements QueryAPI {
      */
     @Override
     public QueryResponseDTO createQuery(QueryRequestDTO queryRequestDTO) {
-        System.out.println(queryRequestDTO);
         return queryService.createQuery(queryRequestDTO);
     }
 

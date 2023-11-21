@@ -34,7 +34,6 @@ public class GetDataToQueryService {
     @Autowired
     public GetDataToQueryService(Environment env, @Value("${spring.credential.google}") String path) {
         try {
-            System.out.println(env.getProperty("spring.credential.google"));
             this.credentials = GoogleCredentials.fromStream(new FileInputStream(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -154,7 +153,6 @@ public class GetDataToQueryService {
             worldType = getDataRequestDTO.getCodeRegion();
             query = buildQueryRegion(getDataRequestDTO);
         }
-        System.out.println(query);
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(query)
                         .setUseLegacySql(false)
@@ -171,8 +169,7 @@ public class GetDataToQueryService {
                 .map(row -> row.get("amount_person").getStringValue())
                 .toList();
 
-        System.out.println(listYears);
-        System.out.println(listValues);
+
 
         return GetDataResponseDTO.builder()
                 .worldType(worldType)
@@ -199,6 +196,7 @@ public class GetDataToQueryService {
         Job queryJob = config(queryConfig);
 
         TableResult result = queryJob.getQueryResults();
+
         List<String> listYears = StreamSupport.stream(result.iterateAll().spliterator(), false)
                 .map(row -> row.get("year").getStringValue())
                 .toList();

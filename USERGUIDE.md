@@ -38,7 +38,7 @@ DemograrficAtlas is an application that will allow you to see the population aro
 
 Once you enter the application, you will find a welcome image to the app, in this screen you will be asked for your username, which you must enter to continue to the dashboard tab and start making your queries about the population of the world.
 
-![Alt text](images\WelcomePage.png)
+![Alt text](images/WelcomePage.png)
 
 When the number of characters in your username is greater than 3, the login option will be enabled.
 
@@ -133,6 +133,5 @@ As shown throughout the application flow, the data is persistent because it is s
 ### Multiplayer Functionality
 
 Several users can use this application at the same time
-
 
 These are all the features of Demografic Atlas, stay tuned for possible updates of the app.

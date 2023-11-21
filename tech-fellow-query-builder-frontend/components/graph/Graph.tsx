@@ -1,13 +1,22 @@
 import DataGraphType from "@/types/DataGraphType";
 import React, { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
+import GetDataType from "@/types/GetDataType";
 
 interface GraphProps {
-  queryData: DataGraphType;
+  dataGraph: DataGraphType;
+  queryData: GetDataType;
 }
 
-const Graph = ({ queryData }: GraphProps) => {
-  const data = queryData;
+const Graph = ({ dataGraph, queryData }: GraphProps) => {
+  console.log(dataGraph);
+  const data = dataGraph;
+  let labelY = "Persons amount";
+  if (queryData.ageMax === queryData.ageMin) {
+    labelY += ` with ${queryData.ageMin} years old`;
+  } else {
+    labelY += ` between ${queryData.ageMin} and ${queryData.ageMax} years old`;
+  }
 
   const chartRef = useRef(null);
 
@@ -29,6 +38,12 @@ const Graph = ({ queryData }: GraphProps) => {
           ],
         },
         options: {
+          plugins: {
+            title: {
+              display: true,
+              text: `Population of ${data.worldType}`,
+            },
+          },
           scales: {
             x: {
               type: "linear",
@@ -43,7 +58,7 @@ const Graph = ({ queryData }: GraphProps) => {
               position: "left",
               title: {
                 display: true,
-                text: "Persons amount",
+                text: labelY,
               },
             },
           },

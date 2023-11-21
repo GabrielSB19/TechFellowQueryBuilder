@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Autocomplete, AutocompleteItem, Button } from "@nextui-org/react";
 import CountryType from "@/types/CountryType";
 import GroupCountryType from "@/types/GroupCountryType";
@@ -8,14 +8,29 @@ interface SelectWorldProps {
   countries: CountryType[];
   regionWorld: RegionWorldType[];
   handleProperty: (property: string, value: string) => void;
+  paramsCountry: string;
+  paramsRegion: string;
 }
 
 const SelectWorld = ({
   countries,
   regionWorld,
   handleProperty,
+  paramsCountry,
+  paramsRegion,
 }: SelectWorldProps) => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState<string>("");
+
+  useEffect(() => {
+    if (paramsCountry) {
+      setSelectedTypeFilter("country");
+      handleProperty("codeCountry", paramsCountry);
+    } else if (paramsRegion) {
+      setSelectedTypeFilter("region");
+      handleProperty("codeRegion", paramsRegion);
+    }
+  }, []);
+
   return (
     <>
       <div>
@@ -39,6 +54,7 @@ const SelectWorld = ({
         {selectedTypeFilter === "country" && (
           <div className="flex w-full flex-row justify-center md:flex-nowrap gap-4 mt-5">
             <Autocomplete
+              defaultSelectedKey={paramsCountry}
               label="Select a country"
               placeholder="Search an country"
               className="max-w-xs"
@@ -61,6 +77,7 @@ const SelectWorld = ({
         {selectedTypeFilter === "region" && (
           <div className="flex w-full flex-row justify-center md:flex-nowrap gap-4 mt-5">
             <Autocomplete
+              defaultSelectedKey={paramsRegion}
               label="Select an region"
               placeholder="Search an region"
               className="max-w-xs"

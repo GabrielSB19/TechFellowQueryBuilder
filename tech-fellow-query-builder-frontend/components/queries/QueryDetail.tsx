@@ -16,6 +16,7 @@ import getDataService from "@/service/getDataService";
 import DataGraphType from "@/types/DataGraphType";
 import Graph from "../graph/Graph";
 import MainComment from "../comments/MainComment";
+import Link from "next/link";
 
 interface QueryDetailProps {
   query: QueryType;
@@ -91,7 +92,7 @@ const QueryDetail = ({ query }: QueryDetailProps) => {
                           </div>
                         </div>
                       </div>
-                      <Graph queryData={queryData} />
+                      <Graph dataGraph={queryData} queryData={query} />
                       <MainComment queryId={query.id.toString()} />
                     </div>
                   )
@@ -101,6 +102,24 @@ const QueryDetail = ({ query }: QueryDetailProps) => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
+                <Link
+                  href={{
+                    pathname: "/dashboard",
+                    query: {
+                      codeCountry: query.codeCountry,
+                      codeRegion: query.codeRegion,
+                      gender: query.gender,
+                      ageMin: query.ageMin,
+                      ageMax: query.ageMax,
+                      yearMin: query.yearMin,
+                      yearMax: query.yearMax,
+                    },
+                  }}
+                >
+                  <Button color="primary" variant="light" onPress={onClose}>
+                    Edit Query
+                  </Button>
+                </Link>
               </ModalFooter>
             </>
           )}

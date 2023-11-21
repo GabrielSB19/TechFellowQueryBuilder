@@ -1,7 +1,6 @@
 "use client";
 
 import CountryType from "@/types/CountryType";
-import GroupCountryType from "@/types/GroupCountryType";
 import RegionWorldType from "@/types/RegionWorldType";
 import React, { useEffect, useState } from "react";
 import SelectWorld from "./SelectWorld";
@@ -14,12 +13,14 @@ import getDataService from "@/service/getDataService";
 import { toast } from "react-hot-toast";
 import DataGraphType from "@/types/DataGraphType";
 import Graph from "../graph/Graph";
-import { CircularProgress, Modal } from "@nextui-org/react";
+import { CircularProgress } from "@nextui-org/react";
 import ModalSaveQuery from "../saveQuery/ModalSaveQuery";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
 interface MainDashboardProps {
   countries: CountryType[];
   regionWorld: RegionWorldType[];
+  params: ReadonlyURLSearchParams;
 }
 
 const queryDataForm: GetDataType = {
@@ -32,7 +33,11 @@ const queryDataForm: GetDataType = {
   yearMax: "",
 };
 
-const MainDashboard = ({ countries, regionWorld }: MainDashboardProps) => {
+const MainDashboard = ({
+  countries,
+  regionWorld,
+  params,
+}: MainDashboardProps) => {
   const [isEnable, setIsEnable] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<GetDataType>(queryDataForm);
   const [isQueryLoad, setIsQuery] = useState<boolean>(false);
@@ -92,6 +97,8 @@ const MainDashboard = ({ countries, regionWorld }: MainDashboardProps) => {
               countries={countries}
               regionWorld={regionWorld}
               handleProperty={handleProperty}
+              paramsCountry={params.get("codeCountry") || ""}
+              paramsRegion={params.get("codeRegion") || ""}
             />
           </div>
           <div className="flex flex-col w-[30%]">
@@ -119,9 +126,9 @@ const MainDashboard = ({ countries, regionWorld }: MainDashboardProps) => {
         ) : (
           dataGraph && (
             <div>
-              <Graph queryData={dataGraph} />
+              <Graph dataGraph={dataGraph} queryData={queryData} />
               <div className="flex flex-row justify-center mb-10 w-[100%]">
-                <ModalSaveQuery queryData={dataGraph} />
+                <ModalSaveQuery dataGraph={dataGraph} queryData={queryData} />
               </div>
             </div>
           )

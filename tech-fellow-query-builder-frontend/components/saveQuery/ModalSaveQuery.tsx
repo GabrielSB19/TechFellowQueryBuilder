@@ -15,9 +15,11 @@ import {
 import DataGraphType from "@/types/DataGraphType";
 import QueryFormType from "@/types/QueryFormType";
 import { toast } from "react-hot-toast";
+import GetDataType from "@/types/GetDataType";
 
 interface ModalSaveQueryProps {
-  queryData: DataGraphType;
+  dataGraph: DataGraphType;
+  queryData: GetDataType;
 }
 
 const queryFormSave: QueryFormType = {
@@ -26,23 +28,31 @@ const queryFormSave: QueryFormType = {
   userClient: "",
   query: "",
   worldType: "",
+  codeCountry: "",
+  codeRegion: "",
+  gender: "",
+  ageMin: "",
+  ageMax: "",
+  yearMin: "",
+  yearMax: "",
 };
 
-const ModalSaveQuery = ({ queryData }: ModalSaveQueryProps) => {
+const ModalSaveQuery = ({ dataGraph, queryData }: ModalSaveQueryProps) => {
   console.log(queryData);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [queryForm, setQueryForm] = useState<QueryFormType>(queryFormSave);
 
   useEffect(() => {
-    const querySQL = queryData.query;
+    const querySQL = dataGraph.query;
     const username = localStorage.getItem("username") || "";
-    const worldType = queryData.worldType;
+    const worldType = dataGraph.worldType;
     setQueryForm((prevQueryForm) => ({
       ...prevQueryForm,
       userClient: username,
       query: querySQL,
       worldType: worldType,
+      ...queryData,
     }));
   }, []);
 
@@ -51,6 +61,7 @@ const ModalSaveQuery = ({ queryData }: ModalSaveQueryProps) => {
       let updatedQueryForm = { ...prevQueryForm, [property]: value };
       return updatedQueryForm;
     });
+    console.log(queryForm);
   };
 
   const handleSaveQuery = async () => {

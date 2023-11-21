@@ -7,12 +7,14 @@ import bigQueryServie from "@/service/bigqueryService";
 import { toast } from "react-hot-toast";
 import { CircularProgress } from "@nextui-org/progress";
 import CountryType from "@/types/CountryType";
-import GroupCountryType from "@/types/GroupCountryType";
 import RegionWorldType from "@/types/RegionWorldType";
 import MainDashboard from "@/components/dashboard/MainDashboard";
 import NavbarComponent from "@/components/navbar/NavbarComponent";
+import { useSearchParams } from "next/navigation";
 
 const DashboardPage = () => {
+  const searchParams = useSearchParams();
+
   const [countries, setCountries] = useState<CountryType[]>([]);
   const [regions, setRegions] = useState<RegionWorldType[]>([]);
 
@@ -47,7 +49,11 @@ const DashboardPage = () => {
   return (
     <>
       <NavbarComponent selected="Home" />
-      <MainDashboard countries={countries} regionWorld={regions} />
+      <MainDashboard
+        countries={countries}
+        regionWorld={regions}
+        params={searchParams}
+      />
     </>
   );
 };

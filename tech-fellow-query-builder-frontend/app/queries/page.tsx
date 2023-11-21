@@ -25,7 +25,7 @@ const QueriesPage = () => {
 
   return (
     <div>
-      <NavbarComponent selected="queries" />
+      <NavbarComponent selected="Queries" />
       {queries.length === 0 ? (
         <div className="text-centr font-bold text-2xl mt-10">
           There are no queries saved

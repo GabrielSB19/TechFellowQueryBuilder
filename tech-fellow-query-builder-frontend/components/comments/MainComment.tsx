@@ -4,6 +4,8 @@ import { toast } from "react-hot-toast";
 import commentService from "@/service/commentService";
 import { Button } from "@nextui-org/button";
 import AddComment from "./AddComment";
+import CommentFormType from "@/types/CommentFormType";
+import CardComment from "./CardComment";
 
 interface MainCommentProps {
   queryId: string;
@@ -19,6 +21,23 @@ const MainComment = ({ queryId }: MainCommentProps) => {
       if (response) setComments(response);
     } catch (error) {
       toast.error("Error fetching comments");
+    }
+  };
+
+  const fetchOnCreateComment = async (commentText: string) => {
+    try {
+      const commentToSend: CommentFormType = {
+        comment: commentText,
+        queryId: queryId,
+        userClientId: localStorage.getItem("username") || "",
+      };
+      const response = await commentService.fetchCreateComment(commentToSend);
+      if (response) {
+        toast.success("Comment created successfully");
+        fetchGetComments();
+      }
+    } catch (error) {
+      toast.error("Error creating comment");
     }
   };
 
@@ -41,6 +60,7 @@ const MainComment = ({ queryId }: MainCommentProps) => {
         <AddComment
           isCommentCreating={isCommentCreating}
           setIsCommentCreating={setIsCommentCreating}
+          fetchOnCreateComment={fetchOnCreateComment}
         />
       )}
       {comments.length === 0 ? (
@@ -50,7 +70,14 @@ const MainComment = ({ queryId }: MainCommentProps) => {
           </div>
         </div>
       ) : (
-        <div>XDS2</div>
+        <div className="flex flex-col w-full mt-4 gap-4">
+          {comments
+            .slice()
+            .reverse()
+            .map((comment, index) => (
+              <CardComment comment={comment} key={index} />
+            ))}
+        </div>
       )}
     </div>
   );

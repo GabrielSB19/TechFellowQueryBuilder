@@ -3,10 +3,21 @@ import { Slider, SliderValue } from "@nextui-org/react";
 
 interface SelectAgeProps {
   handleProperty: (property: string, value: string) => void;
+  paramsAgeMin: string;
+  paramsAgeMax: string;
 }
 
-const SelectAge = ({ handleProperty }: SelectAgeProps) => {
+const SelectAge = ({
+  handleProperty,
+  paramsAgeMax,
+  paramsAgeMin,
+}: SelectAgeProps) => {
   const [value, setValue] = useState<SliderValue>([9, 15]);
+
+  useEffect(() => {
+    if (paramsAgeMin && paramsAgeMax)
+      setValue([parseInt(paramsAgeMin), parseInt(paramsAgeMax)]);
+  }, []);
 
   useEffect(() => {
     const range = value as number[];
@@ -27,7 +38,6 @@ const SelectAge = ({ handleProperty }: SelectAgeProps) => {
           maxValue={25}
           value={value}
           onChange={setValue}
-          defaultValue={[9, 15]}
           className="max-w-md"
         />
       </div>

@@ -3,10 +3,16 @@ import React, { useState, useEffect } from "react";
 import { Slider, SliderValue } from "@nextui-org/react";
 
 interface SelectYearProps {
+  paramsYearMin: string;
+  paramsYearMax: string;
   handleProperty: (property: string, value: string) => void;
 }
 
-const SelectYear = ({ handleProperty }: SelectYearProps) => {
+const SelectYear = ({
+  handleProperty,
+  paramsYearMax,
+  paramsYearMin,
+}: SelectYearProps) => {
   const [value, setValue] = useState<SliderValue>([1999, 2005]);
 
   useEffect(() => {
@@ -14,6 +20,11 @@ const SelectYear = ({ handleProperty }: SelectYearProps) => {
     handleProperty("yearMin", range[0].toString());
     handleProperty("yearMax", range[1].toString());
   }, [value]);
+
+  useEffect(() => {
+    if (paramsYearMin && paramsYearMax)
+      setValue([parseInt(paramsYearMin), parseInt(paramsYearMax)]);
+  }, []);
 
   return (
     <div>
@@ -28,7 +39,6 @@ const SelectYear = ({ handleProperty }: SelectYearProps) => {
           maxValue={2015}
           value={value}
           onChange={setValue}
-          defaultValue={[1991, 2005]}
           className="max-w-md"
         />
       </div>

@@ -3,14 +3,19 @@ import { RadioGroup, Radio } from "@nextui-org/react";
 
 interface SelectGenderProps {
   handleProperty: (property: string, value: string) => void;
+  paramsGender: string;
 }
 
-const SelectGender = ({ handleProperty }: SelectGenderProps) => {
+const SelectGender = ({ handleProperty, paramsGender }: SelectGenderProps) => {
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
     handleProperty("gender", selected);
   }, [selected]);
+
+  useEffect(() => {
+    if (paramsGender) setSelected(paramsGender);
+  }, []);
 
   return (
     <div>

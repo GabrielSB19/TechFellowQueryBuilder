@@ -102,11 +102,22 @@ const MainDashboard = ({
             />
           </div>
           <div className="flex flex-col w-[30%]">
-            <SelectAge handleProperty={handleProperty} />
-            <SelectYear handleProperty={handleProperty} />
+            <SelectAge
+              handleProperty={handleProperty}
+              paramsAgeMin={params.get("ageMin") || ""}
+              paramsAgeMax={params.get("ageMax") || ""}
+            />
+            <SelectYear
+              handleProperty={handleProperty}
+              paramsYearMin={params.get("yearMin") || ""}
+              paramsYearMax={params.get("yearMax") || ""}
+            />
           </div>
           <div className="flex flex-col w-[30%]">
-            <SelectGender handleProperty={handleProperty} />
+            <SelectGender
+              handleProperty={handleProperty}
+              paramsGender={params.get("gender") || ""}
+            />
           </div>
         </div>
         <div className="mt-10 flex flex-row justify-center w-[100%]">

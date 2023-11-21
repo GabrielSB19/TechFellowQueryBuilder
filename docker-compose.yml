@@ -17,8 +17,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    networks:
-      - mynetwork
     environment:
       - server.port=8000
       - spring.datasource.url=jdbc:postgresql://db:5432/ver_db
@@ -32,7 +30,7 @@ services:
       - spring.credential.google=app/credentials.json
 
   db:
-    image: 'postgres:13.1-alpine'
+    image: 'postgres:latest'
     restart: always
     container_name: db
     environment:
@@ -43,12 +41,6 @@ services:
       - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - mynetwork
 
 volumes:
   postgres_data:
-
-
-networks:
-  mynetwork:

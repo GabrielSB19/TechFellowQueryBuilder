@@ -44,7 +44,7 @@ When the number of characters in your username is greater than 3, the login opti
 
 ### Visual Summary of Queried Data
 
-In this part you will find the dashboard of the application, the most important and interesting part. In this screen you will find all the filters available for you to make your query. The filters are the following:
+In this part you will find the dashboard of the application, the most important and interesting part. In this screen you will find all the filters available for you to make your query. The filters are the following
 
 - Country: Select a country (If you chose a country, you cannot chose a region)
 - Region: Select a region of the wolrd (If you chose a region, you cannot chose a country)

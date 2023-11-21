@@ -28,7 +28,7 @@ const MyQueriesPage = () => {
       <NavbarComponent selected="My Queries" />
       {queries.length === 0 ? (
         <div className="text-centr font-bold text-2xl mt-10">
-          You don't have a query saved
+          You do not have a query saved
         </div>
       ) : (
         <QueriesTable queries={queries} />

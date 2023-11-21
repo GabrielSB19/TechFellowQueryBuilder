@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) representing the response for get data from a query.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,5 +19,6 @@ public class GetDataResponseDTO {
     private String worldType;
     private List<String> years;
     private List<String> values;
+    private String query;
 
 }

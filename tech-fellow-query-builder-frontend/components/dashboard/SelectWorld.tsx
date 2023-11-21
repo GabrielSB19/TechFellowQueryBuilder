@@ -22,7 +22,7 @@ const SelectWorld = ({
         <div className="text-center mt-3 font-bold text-lg">
           Choose the type of filter by world
         </div>
-        <div className="flex flex-row gap-3 mt-3">
+        <div className="flex flex-row gap-3 mt-3 justify-center">
           <Button
             color="primary"
             onClick={() => setSelectedTypeFilter("country")}

@@ -17,7 +17,7 @@ const SelectGender = ({ handleProperty }: SelectGenderProps) => {
       <div className="text-center mt-3 font-bold text-lg">
         Choose the gender
       </div>
-      <div>
+      <div className="flex flex-row justify-center">
         <RadioGroup
           label="Select your Gender"
           value={selected}

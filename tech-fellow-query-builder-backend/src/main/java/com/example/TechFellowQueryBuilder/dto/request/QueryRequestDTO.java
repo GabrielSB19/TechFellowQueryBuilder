@@ -11,9 +11,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.UUID;
 
+/**
+ * Data Transfer Object (DTO) representing the request for creating a query.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -23,11 +24,11 @@ public class QueryRequestDTO {
     @NotEmpty
     @NotNull
     @NotBlank
-    private String queryName;
+    private String description;
     @NotEmpty
     @NotNull
     @NotBlank
-    private String description;
+    private String queryName;
     @NotEmpty
     @NotNull
     @NotBlank
@@ -36,5 +37,9 @@ public class QueryRequestDTO {
     @NotNull
     @NotBlank
     private String query;
+    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String worldType;
 
 }

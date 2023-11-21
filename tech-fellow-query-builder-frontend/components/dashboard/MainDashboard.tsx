@@ -87,16 +87,20 @@ const MainDashboard = ({ countries, regionWorld }: MainDashboardProps) => {
           population in the world.
         </div>
         <div className="flex flex-row justify-between">
-          <SelectWorld
-            countries={countries}
-            regionWorld={regionWorld}
-            handleProperty={handleProperty}
-          />
+          <div className="flex flex-col w-[30%]">
+            <SelectWorld
+              countries={countries}
+              regionWorld={regionWorld}
+              handleProperty={handleProperty}
+            />
+          </div>
           <div className="flex flex-col w-[30%]">
             <SelectAge handleProperty={handleProperty} />
             <SelectYear handleProperty={handleProperty} />
           </div>
-          <SelectGender handleProperty={handleProperty} />
+          <div className="flex flex-col w-[30%]">
+            <SelectGender handleProperty={handleProperty} />
+          </div>
         </div>
         <div className="mt-10 flex flex-row justify-center w-[100%]">
           <Button

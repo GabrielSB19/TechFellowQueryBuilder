@@ -2,15 +2,19 @@ package com.example.TechFellowQueryBuilder.model.ownModel;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Represents a UserClient entity with country code and name.
+ */
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserClient {

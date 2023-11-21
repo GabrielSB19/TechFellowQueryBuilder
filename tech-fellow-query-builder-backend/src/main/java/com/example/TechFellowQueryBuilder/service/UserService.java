@@ -19,6 +19,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    /**
+     * Retrieves a user based on the provided UserRequestDTO.
+     *
+     * @param userRequestDTO The DTO containing user information.
+     * @return A UserResponseDTO containing the user information.
+     */
     public UserResponseDTO getUser(UserRequestDTO userRequestDTO) {
         UserClient userClient = userMapper.toUser(userRequestDTO);
 
@@ -31,8 +37,15 @@ public class UserService {
         }
     }
 
+    /**
+     * Creates a new user based on the provided UserClient.
+     *
+     * @param userClient The user information to be created.
+     * @return A UserResponseDTO containing the created user information.
+     */
     public UserResponseDTO createUser(UserClient userClient) {
         userClient.setQueries(Collections.emptyList());
+        userClient.setComments(Collections.emptyList());
         return userMapper.toResponseDTO(userRepository.save(userClient));
     }
 }

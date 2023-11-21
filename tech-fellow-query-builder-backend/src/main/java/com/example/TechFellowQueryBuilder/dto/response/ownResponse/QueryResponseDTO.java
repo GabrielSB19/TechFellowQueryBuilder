@@ -1,6 +1,5 @@
 package com.example.TechFellowQueryBuilder.dto.response.ownResponse;
 
-import com.example.TechFellowQueryBuilder.model.ownModel.UserClient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) representing the response to create a query.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -20,4 +22,5 @@ public class QueryResponseDTO {
     private String userClient;
     private String query;
     private List<CommentResponseDTO> comments;
+    private String worldType;
 }

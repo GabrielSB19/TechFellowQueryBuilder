@@ -32,7 +32,10 @@ const NavbarComponent = ({ selected }: NavbarComponentProps) => {
       <NavbarBrand>
         <p className="font-bold text-inherit text-xl">DemograficAtlas</p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent
+        className="hidden sm:flex gap-8 shadow-lg px-7 rounded-xl"
+        justify="center"
+      >
         {valueNavbarItems.map((item, index) => {
           return (
             <NavbarItemComponent

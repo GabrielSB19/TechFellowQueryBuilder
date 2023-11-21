@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Service class for managing comments.
+ */
 @Service
 @AllArgsConstructor
 public class CommentService {
@@ -27,9 +30,16 @@ public class CommentService {
     private final UserRepository userRepository;
     private final QueryRepository queryRepository;
 
+    /**
+     * Creates a new comment based on the provided CommentRequestDTO.
+     *
+     * @param commentRequestDTO The data transfer object (DTO) containing the request parameters for creating a comment.
+     * @return The CommentResponseDTO representing the created comment.
+     * @throws RuntimeException if the associated user or query is not found.
+     */
     public CommentResponseDTO createComment(CommentRequestDTO commentRequestDTO) {
         Comment comment = commentMapper.toComment(commentRequestDTO);
-        UserClient userClient = userRepository.findById(UUID.fromString(commentRequestDTO.getUserClientId())).orElseThrow(() -> new RuntimeException("User not found"));
+        UserClient userClient = userRepository.findByUsername(commentRequestDTO.getUserClientId()).orElseThrow(() -> new RuntimeException("User not found"));
         comment.setUserClient(userClient);
         Query query = queryRepository.findById(UUID.fromString(commentRequestDTO.getQueryId())).orElseThrow(() -> new RuntimeException("Query not found"));
         comment.setQuery(query);
@@ -38,6 +48,12 @@ public class CommentService {
         return commentMapper.toCommentResponseDTO(comment);
     }
 
+    /**
+     * Retrieves all comments associated with a specific query.
+     *
+     * @param queryId The unique identifier of the query.
+     * @return A list of CommentResponseDTOs representing comments associated with the specified query.
+     */
     public List<CommentResponseDTO> getAllCommentsByQuery(String queryId) {
         List<Comment> commentsByQuery = commentRepository.findAllByQuery_Id(UUID.fromString(queryId));
         System.out.println(commentsByQuery);

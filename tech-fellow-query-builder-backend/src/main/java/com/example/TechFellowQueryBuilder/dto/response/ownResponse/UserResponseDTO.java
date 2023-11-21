@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) representing the response to create a user.
+ */
 @Data
 @Builder
 @NoArgsConstructor

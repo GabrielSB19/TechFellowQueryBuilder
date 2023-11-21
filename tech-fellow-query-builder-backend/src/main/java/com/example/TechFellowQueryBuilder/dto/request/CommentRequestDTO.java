@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * Data Transfer Object (DTO) representing the request for creating a comment.
+ */
 @Data
 @Builder
 @NoArgsConstructor

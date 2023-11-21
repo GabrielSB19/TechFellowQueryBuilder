@@ -1,6 +1,7 @@
 package com.example.TechFellowQueryBuilder.service.GetDataBigQuery;
 
 import com.example.TechFellowQueryBuilder.dto.request.GetDataRequestDTO;
+import com.example.TechFellowQueryBuilder.dto.request.GetDataSelectRequestDTO;
 import com.example.TechFellowQueryBuilder.dto.response.bigQueryResponse.GetDataResponseDTO;
 import com.example.TechFellowQueryBuilder.model.bigQueryModel.Country;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -17,6 +18,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * Service class for executing BigQuery queries and processing the results.
+ */
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -32,9 +36,23 @@ public class GetDataToQueryService {
         }
     }
 
+    /**
+     * Constructs a GetDataToQueryService instance.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public GetDataToQueryService() throws IOException {
     }
 
+
+    /**
+     * Groups indicator codes based on age range and gender.
+     *
+     * @param ageMin The minimum age in the range.
+     * @param ageMax The maximum age in the range.
+     * @param gender The gender for which indicators are grouped.
+     * @return A formatted string of grouped indicator codes.
+     */
     private String groupIndicator (String ageMin, String ageMax, String gender){
         List<String> buildIndicatorCode = new ArrayList<>();
         for (int i = Integer.parseInt(ageMin); i <= Integer.parseInt(ageMax); i++) {
@@ -45,6 +63,14 @@ public class GetDataToQueryService {
         return String.join(", ", buildIndicatorCode);
     }
 
+    /**
+     * Builds and returns a SQL query string for retrieving data based on the provided GetDataRequestDTO.
+     * The query retrieves data from the 'bigquery-public-data.world_bank_intl_education.international_education' table,
+     * filtering by indicator code, country code, and year range.
+     *
+     * @param getDataRequestDTO The DTO containing parameters for constructing the query.
+     * @return A SQL query string for retrieving the specified data.
+     */
     private String buildQuery (GetDataRequestDTO getDataRequestDTO) {
         String setIndicatorCode = groupIndicator(getDataRequestDTO.getAgeMin(), getDataRequestDTO.getAgeMax(), getDataRequestDTO.getGender());
         StringBuilder query = new StringBuilder("SELECT p.year, sum(p.value) as amount_person, FROM `bigquery-public-data.world_bank_intl_education.international_education` as p where p.indicator_code in (")
@@ -57,6 +83,14 @@ public class GetDataToQueryService {
         return query.toString();
     }
 
+    /**
+     * Builds and returns a SQL query string for retrieving region-specific data based on the provided GetDataRequestDTO.
+     * The query joins the 'bigquery-public-data.world_bank_intl_education.international_education' and 'bigquery-public-data.world_bank_intl_education.country_summary'
+     * tables, filtering by region, indicator code, and year range.
+     *
+     * @param getDataRequestDTO The DTO containing parameters for constructing the query.
+     * @return A SQL query string for retrieving region-specific data.
+     */
     private String buildQueryRegion(GetDataRequestDTO getDataRequestDTO){
         String setIndicatorCode = groupIndicator(getDataRequestDTO.getAgeMin(), getDataRequestDTO.getAgeMax(), getDataRequestDTO.getGender());
         StringBuilder query = new StringBuilder("SELECT i.year, SUM(i.value) as amount_person FROM `bigquery-public-data.world_bank_intl_education.international_education` as i JOIN `bigquery-public-data.world_bank_intl_education.country_summary` as s ON i.country_code = s.country_code WHERE s.region = '")
@@ -69,6 +103,13 @@ public class GetDataToQueryService {
         return query.toString();
     }
 
+    /**
+     * Executes a BigQuery query using the specified configuration.
+     *
+     * @param queryConfig The configuration for the BigQuery query.
+     * @return The result of the BigQuery query job.
+     * @throws IOException If an I/O error occurs.
+     */
     private Job config(QueryJobConfiguration queryConfig) throws IOException {
         BigQuery bigquery = BigQueryOptions.newBuilder()
                 .setCredentials(credentials)
@@ -90,6 +131,14 @@ public class GetDataToQueryService {
         return queryJob;
     }
 
+    /**
+     * Executes a BigQuery query to retrieve data based on the provided request.
+     *
+     * @param getDataRequestDTO The request containing parameters for the BigQuery query.
+     * @return The response containing the query results.
+     * @throws IOException If an I/O error occurs.
+     * @throws InterruptedException If the query execution is interrupted.
+     */
     public GetDataResponseDTO doQuery(GetDataRequestDTO getDataRequestDTO) throws IOException, InterruptedException {
         String query;
         String worldType;
@@ -100,6 +149,7 @@ public class GetDataToQueryService {
             worldType = getDataRequestDTO.getCodeRegion();
             query = buildQueryRegion(getDataRequestDTO);
         }
+        System.out.println(query);
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(query)
                         .setUseLegacySql(false)
@@ -116,10 +166,42 @@ public class GetDataToQueryService {
                 .map(row -> row.get("amount_person").getStringValue())
                 .toList();
 
+        System.out.println(listYears);
+        System.out.println(listValues);
+
         return GetDataResponseDTO.builder()
                 .worldType(worldType)
                 .years(listYears)
                 .values(listValues)
+                .query(query)
                 .build();
+    }
+
+    /**
+     * Executes a BigQuery query to retrieve data based on the provided selection request.
+     *
+     * @param getDataSelectRequestDTO The request containing the SQL query for selection.
+     * @return The response containing the selected query results.
+     * @throws IOException If an I/O error occurs.
+     * @throws InterruptedException If the query execution is interrupted.
+     */
+    public GetDataResponseDTO doQueryToSelect (GetDataSelectRequestDTO getDataSelectRequestDTO) throws IOException, InterruptedException {
+        QueryJobConfiguration queryConfig =
+                QueryJobConfiguration.newBuilder(getDataSelectRequestDTO.getSqlQuery())
+                        .setUseLegacySql(false)
+                        .build();
+
+        Job queryJob = config(queryConfig);
+
+        TableResult result = queryJob.getQueryResults();
+        List<String> listYears = StreamSupport.stream(result.iterateAll().spliterator(), false)
+                .map(row -> row.get("year").getStringValue())
+                .toList();
+
+        List<String> listValues = StreamSupport.stream(result.iterateAll().spliterator(), false)
+                .map(row -> row.get("amount_person").getStringValue())
+                .toList();
+
+        return GetDataResponseDTO.builder().worldType(getDataSelectRequestDTO.getWorldType()).years(listYears).values(listValues).build();
     }
 }

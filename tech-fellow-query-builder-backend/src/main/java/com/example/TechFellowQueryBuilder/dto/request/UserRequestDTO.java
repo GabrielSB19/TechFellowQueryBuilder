@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) representing the request for creating a user.
+ */
 @Data
 @Builder
 @NoArgsConstructor

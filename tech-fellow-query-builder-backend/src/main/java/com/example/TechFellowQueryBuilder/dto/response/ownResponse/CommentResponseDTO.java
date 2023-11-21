@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * Data Transfer Object (DTO) representing the response to create a comment.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,4 +20,5 @@ public class CommentResponseDTO {
     private String comment;
     private UUID userClient;
     private UUID query;
+    private String username;
 }

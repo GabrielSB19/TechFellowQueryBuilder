@@ -90,11 +90,49 @@ Let's see all the queries created by others
 
 ![Alt text](images\AllQueries.png)
 
+### Select Saved Query
+
+You can see that in the list of queries there is a button called details, if we press that button we can see the query we selected, we can see the graph that was generated and also the query data.
+
+![Alt text](images\SelectQuery.png)
+
+We can now see the data we saved, however, one functionality is missing. We can also go back to the construction of this query, in order to edit it as we wish. To do this we must select the following button at the end of the modal called Edit Query
+
+![Alt text](images\EditQuery.png)
+
+Once we click on the edit button, the application will take us to the main dashboard where all filters will be set to the values that were set when the query was saved.
+
+![Alt text](images\EditQueryFilters.png)
 
 ### Comment on Query
 
-### Select Saved Query
+If you have questions or want to comment on a query saved by another user, DemograficAtlas allows you to do so. To do this we must go to the same button that allows us to visualize the query, that is to say to the button called details. When you press this button you will be able to see the comments section.
+
+![Alt text](images\CommentSection.png)
+
+If there are no comments, the user will be notified. No comments? Let's create one. To create a comment we must click on the add comment button and a container with this functionality will be displayed.
+
+![Alt text](images\AddComent.png)
+
+To save the comment, click on the submit button. Now we can see our comment displayed in the list.
+
+![Alt text](images\ViewComment.png)
+
+We can add more than one comment
+
+![Alt text](images\SecondComment.png)
+
+We can also interact with other people, because the comments of all users who comment on each query are displayed. Depending on the age of the comment it will be shown first.
+
+![Alt text](images\InteractiveComment.png)
 
 ### Persistence
 
+As shown throughout the application flow, the data is persistent because it is stored in a database which is consumed by the backend of our application.
+
 ### Multiplayer Functionality
+
+Several users can use this application at the same time
+
+
+These are all the features of Demografic Atlas, stay tuned for possible updates of the app.

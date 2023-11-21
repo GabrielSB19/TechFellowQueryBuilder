@@ -22,6 +22,10 @@ const NavbarComponent = ({ selected }: NavbarComponentProps) => {
   const handleLinkClick = (option: string) => {
     setSelectedOption(option);
   };
+  const LogOut = () => {
+    localStorage.removeItem("username");
+    window.location.href = "/";
+  };
 
   return (
     <Navbar>
@@ -42,7 +46,13 @@ const NavbarComponent = ({ selected }: NavbarComponentProps) => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button
+            as={Link}
+            color="primary"
+            href="/"
+            variant="flat"
+            onClick={LogOut}
+          >
             Log out
           </Button>
         </NavbarItem>

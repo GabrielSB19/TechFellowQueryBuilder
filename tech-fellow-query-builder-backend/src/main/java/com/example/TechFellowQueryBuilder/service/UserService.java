@@ -27,7 +27,7 @@ public class UserService {
      */
     public UserResponseDTO getUser(UserRequestDTO userRequestDTO) {
         UserClient userClient = userMapper.toUser(userRequestDTO);
-    Optional<UserClient> userClientOptional = userRepository.findByUsername(userClient.getUsername());
+        Optional<UserClient> userClientOptional = userRepository.findByUsername(userClient.getUsername());
 
         if (userClientOptional.isPresent()) {
             return userMapper.toResponseDTO(userClientOptional.get());
@@ -45,6 +45,7 @@ public class UserService {
     public UserResponseDTO createUser(UserClient userClient) {
         userClient.setQueries(Collections.emptyList());
         userClient.setComments(Collections.emptyList());
-        return userMapper.toResponseDTO(userRepository.save(userClient));
+        UserClient user = userRepository.save(userClient);
+        return userMapper.toResponseDTO(user);
     }
 }

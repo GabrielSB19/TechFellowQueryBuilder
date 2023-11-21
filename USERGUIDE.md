@@ -135,3 +135,7 @@ As shown throughout the application flow, the data is persistent because it is s
 Several users can use this application at the same time
 
 These are all the features of Demografic Atlas, stay tuned for possible updates of the app.
+
+## Video Explainer
+
+Below you can see the explanation video about Docker. [Click Here](https://www.youtube.com/watch?v=SLt9raYGnig)

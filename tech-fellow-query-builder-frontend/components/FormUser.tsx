@@ -6,8 +6,10 @@ import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import userService from "@/service/userService";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const FormUser = () => {
+  const router = useRouter();
   const [username, setUsername] = useState<string>("");
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +24,10 @@ const FormUser = () => {
     try {
       localStorage.setItem("username", username);
       await userService.fetchCreateData(username);
+      toast.success("User created successfully");
+      router.push("/dashboard");
     } catch (error) {
-      toast.error("Error creating user");
+      toast.error("Error creating user, please try again.");
     }
   };
 
@@ -41,17 +45,15 @@ const FormUser = () => {
           className="max-w-xs"
         />
         {username.length > 2 && (
-          <Link href="/dashboard" className="w-[100%]">
-            <Button
-              color="primary"
-              className="animate-appearance-in mt-2 w-full"
-              onClick={() => {
-                handleCreateUser(username);
-              }}
-            >
-              Log In
-            </Button>
-          </Link>
+          <Button
+            color="primary"
+            className="animate-appearance-in mt-2 w-full"
+            onClick={() => {
+              handleCreateUser(username);
+            }}
+          >
+            Log In
+          </Button>
         )}
       </div>
     </div>

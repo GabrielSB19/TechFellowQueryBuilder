@@ -7,6 +7,9 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.bigquery.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -26,17 +29,16 @@ public class BigQueryWorldDataService {
 
     GoogleCredentials credentials;
 
-    {
+    @Autowired
+    public BigQueryWorldDataService(Environment env, @Value("${spring.credential.google}") String path) {
         try {
-            credentials = GoogleCredentials.fromStream(new FileInputStream("src/main/resources/credentials.json"));
+            System.out.println(env.getProperty("spring.credential.google"));
+            this.credentials = GoogleCredentials.fromStream(new FileInputStream(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    /**
-     * Initializes the BigQueryWorldDataService with the provided GoogleCredentials.
-     */
     public BigQueryWorldDataService() throws IOException {
     }
 

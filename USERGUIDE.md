@@ -54,13 +54,13 @@ In this part you will find the dashboard of the application, the most important 
 - Year max: Select the maximun year to filder
 - Gender: Selec the gender, Male, Female or All
 
-![Alt text](images\DashboardPage.png)
+![Alt text](images/DashboardPage.png)
 
 when you have all the filters selected, the option to run the query will be enabled.
 
 Run the query, you can now visualize your data
 
-![Alt text](images\RunQuery.png)
+![Alt text](images/RunQuery.png)
 
 Now you can visualize the behavior of the population in Colombia in the selected years through a line graph, which if you stand on a point will show you the specific data of that value.
 
@@ -68,11 +68,11 @@ Now you can visualize the behavior of the population in Colombia in the selected
 
 What is better than being able to visualize our data? If so, being able to save it. For this reason after running the query the next step is to save this query, we can do it by pressing the following button
 
-![Alt text](images\SaveQuery.png)
+![Alt text](images/SaveQuery.png)
 
 Once you press the save query button a modal will be displayed which will ask you for additional information to save this query. You are free to type whatever you want
 
-![Alt text](images\SaveQueryModal.png)
+![Alt text](images/SaveQueryModal.png)
 
 Great, you've already saved your query
 
@@ -80,51 +80,51 @@ Great, you've already saved your query
 
 What is the point of storing information if we cannot access it? DemograficAtlas has the option to view all saved queries, we have two options, to view only the queries that are created by us and all queries that are created by other users.
 
-![Alt text](images\OptionViewQueries.png)
+![Alt text](images/OptionViewQueries.png)
 
 Here we can see both options, now let's go to view our own queries
 
-![Alt text](images\AllQueriesOwn.png)
+![Alt text](images/AllQueriesOwn.png)
 
 Let's see all the queries created by others
 
-![Alt text](images\AllQueries.png)
+![Alt text](images/AllQueries.png)
 
 ### Select Saved Query
 
 You can see that in the list of queries there is a button called details, if we press that button we can see the query we selected, we can see the graph that was generated and also the query data.
 
-![Alt text](images\SelectQuery.png)
+![Alt text](images/SelectQuery.png)
 
 We can now see the data we saved, however, one functionality is missing. We can also go back to the construction of this query, in order to edit it as we wish. To do this we must select the following button at the end of the modal called Edit Query
 
-![Alt text](images\EditQuery.png)
+![Alt text](images/EditQuery.png)
 
 Once we click on the edit button, the application will take us to the main dashboard where all filters will be set to the values that were set when the query was saved.
 
-![Alt text](images\EditQueryFilters.png)
+![Alt text](images/EditQueryFilters.png)
 
 ### Comment on Query
 
 If you have questions or want to comment on a query saved by another user, DemograficAtlas allows you to do so. To do this we must go to the same button that allows us to visualize the query, that is to say to the button called details. When you press this button you will be able to see the comments section.
 
-![Alt text](images\CommentSection.png)
+![Alt text](images/CommentSection.png)
 
 If there are no comments, the user will be notified. No comments? Let's create one. To create a comment we must click on the add comment button and a container with this functionality will be displayed.
 
-![Alt text](images\AddComent.png)
+![Alt text](images/AddComent.png)
 
 To save the comment, click on the submit button. Now we can see our comment displayed in the list.
 
-![Alt text](images\ViewComment.png)
+![Alt text](images/ViewComment.png)
 
 We can add more than one comment
 
-![Alt text](images\SecondComment.png)
+![Alt text](images/SecondComment.png)
 
 We can also interact with other people, because the comments of all users who comment on each query are displayed. Depending on the age of the comment it will be shown first.
 
-![Alt text](images\InteractiveComment.png)
+![Alt text](images/InteractiveComment.png)
 
 ### Persistence
 
